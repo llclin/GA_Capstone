@@ -1,108 +1,57 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 4: The Snack-o-Meter: A tool to inform public on consumption of biscuits​
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Capstone Project: Chat assistant ​for Complementarity Assessment Framework (COMPASS)
 
 ### Problem Statement
 
-The National Health Population Survey highlighted various actions to improve Singaporean health. The focus of our project will be on eating healthier.
+COMPASS is a new points-based framework that was announced in Mar 2022 for Employment Pass (EP) approvals. COMPASS considers both individual and firm-related attributes to holistically evaluate an EP applicant’s complementarity.
 
-Several measures have been implemented to promote healthy eating. This includes the Nutri-Grade labeling for beverages, which focuses on sugar and saturated fat, and has shifted consumption and led to reduction in sugar intake. More recently, Singapore has also shared that it is studying possible regulatory measures to reduce sodium content in food dishes. However, the nutritional values in snacks has not been widely discussed and this is the gap we are targeting to cover.
+This framework applies to new EP applications from 1 September 2023, and renewals of EPs expiring from 1 September 2024. Since 2023, there have been ongoing updates and media coverage about the criteria to help prepare businesses when applying or renewing the employment passes. 
 
-While all snacks should be considered, biscuit is used as the initial proof-of-concept due to its popularity. The objective of the project is to build a tool that can inform if a biscuit is healthy or not, helping consumers make healthier choices.
+While there are various channels that businesses can rely on to get information about COMPASS, there has not been any that could provide 24/7 support and immediate assistance for the queries that businesses might have when planning for the applications and/or renewals of EPs. 
+
+The objective of the project is to build a customised chatbot that can provide 24/7 support and immediate assistance for the queries relating to COMPASS.
 
 ---
 
 ### Data Used
 
-[`NTUC Fairprice`](https://www.fairprice.com.sg/category/biscuits): Data is scraped from NTUC Fairprice website, under category of Biscuits.
-<br>Biscuit Subcategory: 
-1) Creamed and Filled
-2) Crackers
-3) Wafers
-4) Chocolate Cookies
+[`MOM website`](https://www.mom.gov.sg/passes-and-permits/employment-pass/eligibility): Data is scraped from MOM website, under segment on Eligibility.
+1) Eligibility
+2) COMPASS C1. Salary benchmarks
+3) COMPASS C5. Skills bonus - Shortage Occupation List (SOL)
+4) COMPASS C6. Strategic Economic Priorities (SEP) bonus
 
 ---
 
-### Data Dictionary
+### Summary of Data Extracted
+![](./images/breakdown_of_data_extracted.png)
 
-|Feature|Type|Description|
-|---|---|---|
-|**type**|*string*|Subcategory of Biscuit<br>cookie: chocolate cookie<br>cracker<br>cream: creamed & filled biscuit<br>wafers|
-|**product**|*string*|Name of product|
-|**per_serving_g**|*int64*|Size of serving per one gram (gram)|
-|**total_fat_g_per_gram_of_serving**|*int64*|Total fats per gram of serving (gram)|
-|**sugars_g_per_gram_of_serving**|*int64*|Sugars per gram of serving (gram)|
-|**sodium_g_per_gram_of_serving**|*int64*|Sodium per gram of serving (gram)|
-|**class**|*string*|Healthy<br>Unhealthy|
+A total of 53 files were extracted, 7 of them were PDF files and 46 of them were HTML files. 
+
 ---
 
 ### Notebook description
 
-* [`01_webscraping`](/code/01_webscraping.ipynb): Scrape nutritional value data from NTUC Fairprice website
-* [`02_cleaning`](/code/02_cleaning.ipynb): Cleaning of data
-* [`03_EDA`](/code/03_eda.ipynb): Exploratory data analysis
-* [`04_modelling`](/code/04_modelling.ipynb): Modelling of the data
+* [`01_Data_collection_and_visualisation`](/code/01_Data_collection_and_visualisation.ipynb): Scraped relevant URLs related to COMPASS from MOM website to prepare the knowledge base for the chatbot.
+* [`02_Creation_of_chatbot`](/code/02_Creation_of_chatbot.ipynb): Created two chatbots, one based on just the knowledge base curated from the extraction of data and another which has an added system prompt. This codebook also includes metrics used to evaluate the performance of the chatbot to guide us in deciding which chatbot to deploy.
 
 ---
 
 ### Conclusion
 
-- Our decision tree model yields train and test accuracy greater than 0.9, and the train cross validation score also shows that the model is reliable to be deployed for classification.
-- With this model, we developed an user-friendly tool (https://snack-o-meter.streamlit.app/) to help consumers identify if the biscuit of their choice is healthy or not, and recommend healthy alternatives.
+- The chatbot that included system prompt has a better RAGAS score of 0.86 compared to 0.81, and was able to provide more context to users in the responses. Albeit the slight delay in execution time during the testing, the chatbot with system prompt provides more context in its responses and is preferred over a shorter answer which lacks explanation. 
+- This chatbot (https://chatbot-compass.streamlit.app) is available 24/7 to help provide users who need quick answers about COMPASS via their laptops, computers, and even mobile devices.
 
 ---
 
-### Recommendations
+### Next steps
 
-#### 1 - Increase Public Awareness
-- Through marketing campaigns (offline and online campaigns)​
-#### 2 - Expand the model to include other snack types​
-- For example: Nuts and chips
-#### 3 - Integrate tool into HPB’s existing Health 365 app 
-- Intergration is beneficial as it makes Health 365 as “one stop app”​
+#### Phase 1 - Improvise the chatbot to achieve RAGAS score > 0.9. 
+- Iterating the system prompts, exploring various LLM and embedding models to reduce the execution time and generate satisfactory responses
+
+#### Phase 2 - Piloting the improvised chabot for three months to gather feedback from a smaller pool of users and refine accordingly
+- Using MOM's official Telegram channel(/sgministryofmanpower) to reach out to users
+  
+#### Phase 3 - Deploy the refined chatbot on MOM website for any users to enquire about COMPASS
+- Expanding the use of the refined chatbot to reach out to all visitors of MOM website.
 
 ---
-
-### Cost-Benefit Analysis
-
-#### Estimated Cost (per year): $500,000
-
-**1. Marketing Campaign for "Snack-O-Meter": $400,000**
-   
-The Nutri-Grade mark was officially launched on 30 Dec 2022. In FY2022, HPB spent $400,000 on programme, supplies & marketing.
-Using this as a reference, it is expected that the marketing campaign for "Snack-O-Meter" will cost about the same.
-
-_Sources:_ 
-- _HPB Annual Report 2021/2022: https://www.hpb.gov.sg/docs/default-source/pdf/hpb-2022_2023-annual-report.pdf?sfvrsn=bec1a971_2_
-- _MOH News Highlight: https://www.moh.gov.sg/news-highlights/details/rollout-of-nutri-grade-mark-on-30-december-2022_
-
-**2. Application Development and Maintenance: $100,000**
-   
-The intention is for the "Snack-O-Meter" to be incorporated into HPB's existing application, the Health 365.
-The advantage of integration (as opposed to building a standalone app) is that it would save cost on app development.
-In addition, it also uses the Health 365 as a "one-stop" app for the public with regards to health matters.
-Lastly, there would be no additional server cost required.
-
-_Source:_ 
-- _How Much Does It Cost to Develop an App in Singapore in 2022?: https://neetable.com/blog/app-development-cost-in-singapore_
-
-
-
-#### Estimated Benefit (per year): $12,840,000​
-
-**3. Healthcare cost of metabolic risk: $642,000,000**
-   
-Research conducted in 2023 calculated that the healthcare cost arising from metabolic risks would amounted to S$642 million.
-Metabolic risk in this study is defined by high systolic blood pressure, high fasting plasma glucose, high LDL cholesterol.
-Consumption of sodium, sugar, and fat are positively correlated to the above metabolic risk.
-
-From FY2017 to FY2019, the median sugar level of beverages decreased from 8.5 to 6.3 grams per 100 ml (25%).
-This was attributed to the Nutri-Grade campaign which led to suppliers reducing sugar in their beverages.
-
-According to Etiqa's Nutrition Survey conducted in 2022, most snackers would snack more than 3 times in a week.
-Assuming a person consumed a serving of Hello Panda Chocolate a day, that would constitute about 8% of the daily average fats, sodium and sugar intake overall in Singapore.
-If the sucess of the Nutri-Grade campaign (25% reduction) can be applied to "Snack-O-Meter", a 2% (25% * 8%) reduction in daily intake of fats, sodium, and sugar intake is expected.
-Lastly, assuming that reduction in consumption of those nutrients of concern can directly impact metabolic risk by the same %, then a reduction of healthcare cost of $12,840,000 is expected.
-
-_Sources:_
-- _The societal cost of modifiable risk factors in Singapore: https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-023-16198-2_
-- _Ministry of Health’s (MOH) National Population Health Survey (NPHS) 2022 and Health Promotion Board’s (HPB) National Nutrition Survey (NNS) 2022: https://www.moh.gov.sg/news-highlights/details/national-health-surveys-highlight-need-to-focus-on-healthy-diets-and-lifestyles_
-- _Nutrition Survey Report: https://www.etiqa.com.sg/wp-content/uploads/2022/07/Nutrition-Survey-Report_20-Jul.pdf_
