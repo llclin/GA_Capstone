@@ -38,7 +38,16 @@ A total of 53 files were extracted, 7 of them were PDF files and 46 of them were
 
 ### Conclusion
 
-- The chatbot that included system prompt has a better RAGAS score of 0.86 compared to 0.81, and was able to provide more context to users in the responses. Albeit the slight delay in execution time during the testing, the chatbot with system prompt provides more context in its responses and is preferred over a shorter answer which lacks explanation. 
+- The summary of the evaluation metrics and average response time of both chatbots of slightly different configured query engines can be found in the table below.
+
+| Query engine         | RAGAS Score | Answer Relevancy | Faithfulness | Average response time |
+|----------------------|-------------|------------------|--------------|-----------------------|
+| Original (GPT-3.5-Turbo) | 0.8767 | 0.9227        | 0.8350       | 8.3 secs |
+| Improved with system prompt (GPT-3.5-Turbo) | 0.8310| 0.9606      | 0.7322 | 11.3 secs |
+
+- At a glance, we can see that the Original (GPT-3.5-Turbo) seems to be better in most attributes, aside from answer relevancy.
+- However, for our use case, we are focusing slightly more on the answer relevancy. This is because we would like to focus more on the appropriateness and completeness of the responses to the questions posted by the user. There is however, room for better improvement to improve the faithfulness as well as the overall RAGAS score as a lower faithfulness score would imply a lower factual consistency in the responses.
+- We will use the improved query engine with system prompt for our chatbot demonstration.
 - This chatbot (https://chatbot-compass.streamlit.app) is available 24/7 to help provide users who need quick answers about COMPASS via their laptops, computers, and even mobile devices.
 
 ---
