@@ -1,4 +1,4 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Capstone Project: Chat assistant ​for Complementarity Assessment Framework (COMPASS)
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Capstone Project: Chatbot ​for Complementarity Assessment Framework (COMPASS)
 
 ### Problem Statement
 
