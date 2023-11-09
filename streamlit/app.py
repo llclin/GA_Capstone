@@ -7,9 +7,9 @@ import time
 from llama_index import StorageContext, load_index_from_storage
 
 
-st.set_page_config(page_title="Chat assistant for COMPASS", page_icon="🤖", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="Chatbot for COMPASS", page_icon="🤖", layout="centered", initial_sidebar_state="auto", menu_items=None)
 openai.api_key = st.secrets.openai_key
-st.markdown("<h2 style='text-align: center;'>Chat assistant for Complementarity Assessment Framework (COMPASS) 💼📂📑 </h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center;'>Chatbot for Complementarity Assessment Framework (COMPASS) 💼📂📑 </h2>", unsafe_allow_html=True)
 st.caption("Disclaimer: This chatbot is an experimental project, the responses generated may be outdated and inaccurate.")
 st.caption("Please refer to https://www.mom.gov.sg/passes-and-permits/employment-pass/eligibility for the official details.")
 
